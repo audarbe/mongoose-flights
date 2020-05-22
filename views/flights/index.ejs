@@ -22,11 +22,11 @@
     </thead>
     <tbody>
     <% flights.forEach(function(f) { %>
-        <tr>
+        <tr <%= (f.departs > new Date()) ? 'style=color:red;' : '' %>>
           <td><%= f.airline %></td>
           <td><%= f.airport %></td>
           <td><%= f.flightNo %></td>
-          <td><%= f.departs.toDateString() %></td>
+          <td id="departure"><%= f.departs.toDateString() %></td>
           <td><%= f.departs.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></td>
         </tr>
     <% }); %>
