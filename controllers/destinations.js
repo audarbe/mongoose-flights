@@ -17,6 +17,13 @@ function create(req, res) {
 
 
 function deleteDestination(req, res) {
-    console.log(req.params.id)
-    console.log(res.body)
+    Flight.findOne({
+        'destinations._id': req.params.id
+    }, function(err, flight) {
+        const destination = flight.destinations.id(req.params.id);
+        destination.remove();
+        flight.save(function(err) {
+            res.redirect(`/flights/${flight._id}`);
+        });
+    });
 }
