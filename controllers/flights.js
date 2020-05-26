@@ -3,38 +3,46 @@ const Flight = require('../models/flight');
 module.exports = {
     new: newFlight,
     create,
-    index
-};
-
-function index(req, res) {
-    Flight.find({}, function(err, flights) {
-        res.render('flights/index', {
-            flights,
-        });
-    }).sort({
-        departs: 'ascending'
-    });
+    index,
+    show,
 };
 
 function newFlight(req, res) {
     const newFlight = new Flight();
     const dt = newFlight.departs;
     const departsDate = `${dt.getFullYear()}-${dt.getMonth().toString().padStart(2, '0')}-${dt.getDate()}T${dt.getHours().toString().padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`;
-    res.render('flights/new',
-     {departsDate});
+    res.render('flights/new', {
+        title: 'New Flight',
+        departsDate
+    });
 };
 
 function create (req, res) {
     const flight = new Flight(req.body);
     flight.save(function() {
-        console.log(flight); // remove this before submit
-        res.redirect('/flights');
+        if (!req.body.departs) return res.redirect('flights/new');
+        res.redirect('flights')
     });
 };
 
+function index(req, res) {
+    Flight.find({}, function(err, flights) {
+        res.render('flights/index', {
+            title: 'Mongoose Flights',
+            flights,
+        });
+    }).sort({
+        departs: 1,
+    });
+};
 
-/*
-Code these additional User Stories:
-AAU, I want the flights in the list to be displayed using red text if the flight's departure date has passed.
-Style the index and new views.
-*/
+function show(req, res) {
+    Flight.findById(req.params.id, function(err, flight) {
+        res.render('flights/show', {
+            title: 'Flight Details',
+            flight,
+        });
+    }).sort({
+        "flight.destinations[0]['arrival']": 1,
+    })
+};

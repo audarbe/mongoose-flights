@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+<section id="flight-details">
+    <h2>Departure Details</h2>
+    <p><b>Airline:</b> <%= flight.airline %></p>
+    <p><b>Airport:</b> <%= flight.airport %></p>
+    <p><b>Flight Number:</b> <%= flight.flightNo %></p>
+    <p><b>Departure Date:</b> <%= flight.departs.toDateString() %></p>
+    <p><b>Departure Time:</b> <%= flight.departs.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %></p>
+</section>
+<section id="destinations">
+  <table>
+    <thead>
+      <tr>
+        <td colspan="2"><h2>Destinations</h2></td>
+      </tr>
+      <tr>
+        <th>Airport</th>
+        <th>Arrival</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.destinations.forEach(function(a) { %>
+        <tr>
+          <td><%= a.airport %></td>
+          <td><%= a.arrival.toDateString() %><br />
+            <%= a.arrival.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %>
+          </td>
+          <td>
+            <form action="/flights/<%= flight._id %>/<%= a._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i></button>
+          </form>
+
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</section>
+<section>
+    <h2>Add Destination</h2>
+    <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Airport:</label>
+          <select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN" selected>DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Arrival Date:
+            <input type="datetime-local" id="date-input" name="arrival" value="" required>
+          </label>
+        </div>
+      </div>
+        <input type="submit" value="Add Destination">
+    </form>
+    <a href="/flights">Back to Flights</a>
+</section>  
+<%- include('../partials/footer') %>

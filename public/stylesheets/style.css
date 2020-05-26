@@ -1,8 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  background-color: #EEEEEE;
+  color: #666666;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  display: grid;
+  grid-template-rows: 60px auto 40px;
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+main {
+  border: 1px solid green;
+  padding: 10px;
+}
+
+nav {
+  display: flex;
+  border: 1px solid red;
+  align-content: center;
+  justify-content: flex-end;
+  background: url("/images/mongoose_icon.svg") no-repeat center left;
+  text-align: center;
+}
+
+nav > a {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 0 15px;
 }
 
 a {
-  color: #00B7FF;
+  text-decoration: none;
+  font-size: .8em;
+}
+
+footer {
+  border: 1px solid red;
+  top: 100;
+}
+
+.logo {
+  max-width: 60px;
+}
+
+.fas {
+  font-size: 1.8em;
+  padding-bottom: 3px;
+}
+
+section {
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 1rem;
+}
+
+h2 {
+  color: #962C2A;
+}
+
+th {
+  text-align: left;
+  font-weight: 300;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  width: 100%;
+  padding: 10px;
+}
+
+input, select {
+  height: 50px;
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #DDDDDD;
+  background-color: #EEEEEE;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  padding-left: 10px;
+  outline: none;
+}
+
+input[type=submit] {
+  background-color: #962C2A;
+  color: white;
+
+}
+
+
+.delete-button {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  nav {
+    background: url("/images/mongoose_horizontal.svg") no-repeat center left;
+  }
+
+  .form-row {
+    flex-direction: row;
+    justify-content: stretch;
+  }
+}
+
+@media (min-width: 1168px) {
 }
