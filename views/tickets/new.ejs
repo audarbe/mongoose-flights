@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<section>
+  <h2>Add Ticket</h2>
+  <form action="/tickets" method="POST">
+    <div class="form-row">
+        <div class="form-field">
+            <label>Flight No:
+              <select>
+                <% flights.forEach(function(f) { %>
+                    <option><%= f.flightNo %></option>
+                  <% }) %> 
+              </select>
+            </label>
+        </div>
+        <div class="form-field">
+            <label>Seat:
+              <input type="text" name="seat" pattern="[A-F][1-9]\d?" placeholder="A1-F99" required>
+            </label>
+        </div>
+        <div class="form-field">
+            <label>Price:
+              <input type="number" name="price" step="any" min="0" required>
+            </label>
+        </div>
+    </div>
+    <input type="submit" value="Add ticket">
+  </form>
+  </section>
+
+</section>
+<%- include('../partials/footer') %>

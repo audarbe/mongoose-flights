@@ -11,7 +11,9 @@
 </head>
 <body>
   <nav>
-    <a href="/flights/new" <%- title === 'Add Flight' ? 'class="active"' : '' %>><i class="fas fa-plus-circle"></i><span>ADD FLIGHT</span></a>
+    
+    <a href="/tickets/new" <%- title === 'Add Ticket' ? 'class="active"' : '' %>><i class="fas fa-ticket-alt"></i><span>ADD TICKET</span></a>
+    <a href="/flights/new" <%- title === 'Add Flight' ? 'class="active"' : '' %>><i class="fas fa-paper-plane"></i><span>ADD FLIGHT</span></a>
     <a href="/flights" <%- title === 'All Flights' ? 'class="active"' : '' %>><i class="fas fa-eye"></i><span>ALL FLIGHTS</span></a>
   </nav>
   <main>

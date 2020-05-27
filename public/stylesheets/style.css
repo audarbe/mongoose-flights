@@ -25,7 +25,7 @@ nav {
   align-content: center;
   justify-content: flex-end;
   background: url("/images/mongoose_icon.svg")  no-repeat 10px center;
-  background-size: auto 60px;
+  background-size: auto 55px;
   text-align: center;
 }
 
@@ -53,7 +53,7 @@ a:hover {
 
 .fas {
   font-size: 1.8em;
-  padding-bottom: 3px;
+  padding-bottom: 5px;
 }
 
 section {
@@ -129,7 +129,7 @@ input[type=submit] {
 @media (min-width: 768px) {
   nav {
     background: url("/images/mongoose_horizontal.svg")  no-repeat 10px center;
-    background-size: auto 60px;
+    background-size: auto 55px;
   }
 
   .form-row {
@@ -141,4 +141,8 @@ input[type=submit] {
     font-size: 18px;
   }
 
+  .fas {
+    font-size: 1.8em;
+    padding-bottom: 8px;
+  }
 }
