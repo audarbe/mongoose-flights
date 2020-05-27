@@ -15,7 +15,6 @@ function create(req, res) {
     })
 };
 
-
 function deleteDestination(req, res) {
     Flight.findOne({
         'destinations._id': req.params.id

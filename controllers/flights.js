@@ -45,6 +45,10 @@ function show(req, res) {
                 flight,
                 tickets
             })
+        }).sort({
+            seat: 1
         });
-    })
+    }).sort({
+        'flight.destinations.arrival': 1
+    });
 };

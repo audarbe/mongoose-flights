@@ -8,39 +8,65 @@
     <p><b>Departure Time:</b> <%= flight.departs.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) %></p>
 </section>
 
-
+<div class="section-row">
+  <div class="section-column">
 <section id='tickets'>
+  <h2>Tickets</h2>
   <table>
     <thead>
-      <tr>
-        <td colspan="2"><h2>Tickets</h2></td>
-      </tr>
       <tr>
         <th>Seat</th>
         <th>Price</th>
       </tr>
+    </thead>
+    <tbody>
       <%- tickets.map(t => 
       `
       <tr>
       <td>${t.seat}</td>
       <td>${t.price}</td>
+      <td>
+        <form action="/flights/${ flight._id }/tickets/${ t._id }?_method=DELETE" method="POST">
+            <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i></button>
+        </form>
+      </td>
       </tr>
       `
     ).join('') %>
-    </thead>
+    </tbody>  
+
   </table>
 </section>
+</div>
+<div class="section-column">
+<section id='Add Ticket'>
+  <h2>Add Ticket</h2>
+  <form action="/flights/<%= flight._id %>/tickets" method="POST">
+    <div class="form-row">
+        <div class="form-field">
+            <label>Seat:
+              <input type="text" name="seat" pattern="[A-F][1-9]\d?" placeholder="A1-F99" required>
+            </label>
+        </div>
+        <div class="form-field">
+            <label>Price:
+              <input type="number" name="price" step="any" min="0" required>
+            </label>
+        </div>
+    </div>
+    <input type="submit" value="Add ticket">
+  </form>
+  </section>
+</div>
+</div>
 
 
-
-
+<div class="section-row">
+  <div class="section-column">
 <section id="destinations">
+  <h2>Destinations</h2>
   <table>
     <thead>
-      <tr>
-        <td colspan="2"><h2>Destinations</h2></td>
-      </tr>
-      <tr>
         <th>Airport</th>
         <th>Arrival</th>
       </tr>
@@ -62,6 +88,8 @@
     </tbody>
   </table>
 </section>
+</div>
+<div class="section-column">
 <section>
     <h2>Add Destination</h2>
     <form id="add-destination-form" method="POST" action="/flights/<%= flight._id %>/destinations">
@@ -84,6 +112,7 @@
       </div>
         <input type="submit" value="Add Destination">
     </form>
-    <a href="/flights">Back to Flights</a>
 </section>  
+</div>
+</div>
 <%- include('../partials/footer') %>
