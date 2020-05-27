@@ -5,9 +5,9 @@
     <div class="form-row">
         <div class="form-field">
             <label>Flight No:
-              <select>
+              <select name="flight">
                 <% flights.forEach(function(f) { %>
-                    <option><%= f.flightNo %></option>
+                    <option value="<%= f._id %>"><%= f.flightNo %></option>
                   <% }) %> 
               </select>
             </label>
